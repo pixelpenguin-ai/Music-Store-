@@ -1,0 +1,8 @@
+CREATE TABLE `premium_customer` (
+  `customer_id` int NOT NULL,
+  `membership_level` varchar(50) DEFAULT NULL,
+  `discount_rate` decimal(5,2) DEFAULT NULL,
+  `join_date` date DEFAULT NULL,
+  PRIMARY KEY (`customer_id`),
+  FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`) ON DELETE CASCADE
+) 

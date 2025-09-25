@@ -1,0 +1,7 @@
+CREATE TABLE `single` (
+  `product_id` int NOT NULL,
+  `bside_track` varchar(255) DEFAULT NULL,
+  `radio_edit` tinyint(1) DEFAULT '0',
+  PRIMARY KEY (`product_id`),
+  FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`) ON DELETE CASCADE
+)

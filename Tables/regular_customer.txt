@@ -1,0 +1,7 @@
+CREATE TABLE `regular_customer` (
+  `customer_id` int NOT NULL,
+  `loyalty_points` int DEFAULT '0',
+  `Newsletter_subscription` tinyint(1) DEFAULT '0',
+  PRIMARY KEY (`customer_id`),
+  FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`) ON DELETE CASCADE
+)

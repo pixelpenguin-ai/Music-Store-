@@ -1,0 +1,9 @@
+CREATE TABLE `product` (
+  `product_id` int NOT NULL,
+  `product_title` varchar(255) NOT NULL,
+  `price` decimal(10,2) NOT NULL,
+  `genre` varchar(100) DEFAULT NULL,
+  `media` varchar(50) DEFAULT NULL,
+  `in_stock` int DEFAULT '0',
+  PRIMARY KEY (`product_id`)
+)

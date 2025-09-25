@@ -1,0 +1,8 @@
+CREATE TABLE `product_track` (
+  `product_id` int NOT NULL,
+  `track_id` int NOT NULL,
+  `track_number` int DEFAULT NULL,
+  PRIMARY KEY (`product_id`,`track_id`),
+  KEY `track_id` (`track_id`),
+  FOREIGN KEY (`track_id`) REFERENCES `track` (`track_id`)
+)

@@ -1,0 +1,10 @@
+CREATE TABLE `customer_order` (
+  `order_id` int NOT NULL,
+  `customer_id` int NOT NULL,
+  `order_date` date NOT NULL,
+  `filled` tinyint(1) DEFAULT '0',
+  `total_amount` decimal(10,2) DEFAULT NULL,
+  PRIMARY KEY (`order_id`),
+  KEY `customer_id` (`customer_id`),
+  FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`)
+)

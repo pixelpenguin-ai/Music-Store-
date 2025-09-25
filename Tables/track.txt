@@ -1,0 +1,6 @@
+CREATE TABLE `track` (
+  `track_id` int NOT NULL,
+  `track_title` varchar(255) NOT NULL,
+  `length` time DEFAULT NULL,
+  PRIMARY KEY (`track_id`)
+)

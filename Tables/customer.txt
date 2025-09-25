@@ -1,0 +1,13 @@
+CREATE TABLE `customer` (
+  `customer_id` int NOT NULL,
+  `first_name` varchar(100) NOT NULL,
+  `last_name` varchar(100) NOT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `phone_number` varchar(20) DEFAULT NULL,
+  `street` varchar(255) DEFAULT NULL,
+  `city` varchar(100) DEFAULT NULL,
+  `zip` varchar(20) DEFAULT NULL,
+  `preferred_genre` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`customer_id`),
+  UNIQUE KEY `email` (`email`)
+) 

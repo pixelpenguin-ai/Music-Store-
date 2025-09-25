@@ -1,0 +1,7 @@
+CREATE TABLE `album` (
+  `product_id` int NOT NULL,
+  `album_type` varchar(50) DEFAULT NULL,
+  `total_tracks` int DEFAULT NULL,
+   PRIMARY KEY (`product_id`),
+   FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`) ON DELETE CASCADE
+) 
