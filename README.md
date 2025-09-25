@@ -9,3 +9,4 @@ The core functionalities of this project include the following:
 - Inserting new customer orders and modifying existing ones. A customer order consists of both customer information and product information.
 
 An ER Diagram can be shown as follows:
+![ER diagram](https://github.com/user-attachments/assets/491b672c-de1c-4180-b132-a0d1cf46d4b6)
