@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auralia</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+
+<header>
+    <div class="logo">
+        <img src="{{ url_for('static', filename='itunes.png') }}" alt="Music Store Logo">
+        <h1>Auralia</h1>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            <li><a href="{{ url_for('products') }}">Products</a></li>
+            <li><a href="{{ url_for('artists') }}">Artists</a></li>
+            <li><a href="{{ url_for('customers') }}">Customers</a></li>
+
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <section class="hero">
+        <h2>Welcome to Auralia</h2>
+        <p>Your one-stop shop for albums, singles, and more!</p>
+    </section>
+
+    <section class="content">
+        <h3>Featured Albums</h3>
+        {% if albums %}
+            <ul class="album-list">
+                {% for album in albums %}
+                    <li><strong>{{ album.title }}</strong> — {{ album.artist.name }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No albums found.</p>
+        {% endif %}
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2025 Music Store | <a href="{{ url_for('imprint') }}">Imprint</a></p>
+</footer>
+
+</body>
+</html>
