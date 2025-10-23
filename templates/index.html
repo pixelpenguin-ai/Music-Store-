@@ -8,45 +8,40 @@
 </head>
 <body>
 
-<header>
-    <div class="logo">
-        <img src="{{ url_for('static', filename='itunes.png') }}" alt="Music Store Logo">
-        <h1>Auralia</h1>
-    </div>
-    <nav>
-        <ul>
-            <li><a href="{{ url_for('index') }}">Home</a></li>
-            <li><a href="{{ url_for('products') }}">Products</a></li>
-            <li><a href="{{ url_for('artists') }}">Artists</a></li>
-            <li><a href="{{ url_for('customers') }}">Customers</a></li>
-
-        </ul>
-    </nav>
-</header>
-
-<main>
-    <section class="hero">
-        <h2>Welcome to Auralia</h2>
-        <p>Your one-stop shop for albums, singles, and more!</p>
-    </section>
-
-    <section class="content">
-        <h3>Featured Albums</h3>
-        {% if albums %}
-            <ul class="album-list">
-                {% for album in albums %}
-                    <li><strong>{{ album.title }}</strong> — {{ album.artist.name }}</li>
-                {% endfor %}
+    <header>
+        <h1 class="logo">Auralia</h1>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('index') }}" class="active">Home</a></li>
+                <li><a href="{{ url_for('products') }}">Products</a></li>
+                <li><a href="{{ url_for('artists') }}">Artists</a></li>
+                <li><a href="{{ url_for('customers') }}">Customers</a></li>
+                <li><a href="{{ url_for('input') }}">Input</a></li>
             </ul>
-        {% else %}
-            <p>No albums found.</p>
-        {% endif %}
-    </section>
-</main>
+        </nav>
+    </header>
 
-<footer>
-    <p>&copy; 2025 Music Store | <a href="{{ url_for('imprint') }}">Imprint</a></p>
-</footer>
+    <main class="homepage">
+        <div class="welcome-box">
+            <h2>Welcome to Auralia!</h2>
+            <p>Your world of music, vinyls, and unforgettable sounds</p>
+            <a href="{{ url_for('products') }}" class="cta-button">Explore Albums</a>
+        </div>
+
+        <!-- Vinyl and album decorations-->
+         <div class="vinyl-decor">
+            <img src="{{ url_for('static', filename='vinyl1.png') }}" class="vinyl1">
+            <img src="{{ url_for('static', filename='vinyl2.png') }}" class="vinyl2">
+            <img src="{{ url_for('static', filename='vinyl3.png') }}" class="vinyl3">
+            <img src="{{ url_for('static', filename='vinyl4.png') }}" class="vinyl4">
+            <img src="{{ url_for('static', filename='album_sleeve1.png') }}" class="sleeve sleeve1">
+            <img src="{{ url_for('static', filename='album_sleeve2.png') }}" class="sleeve sleeve2">
+         </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Auralia &nbsp; |&nbsp; <a href="{{ url_for('imprint') }}" class="imprint-link">Imprint</a></p>
+    </footer>
 
 </body>
 </html>

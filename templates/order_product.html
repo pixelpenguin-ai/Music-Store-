@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}Add Customer Order Product{% endblock %}
+{% block content %}
+
+<div class="card shadow mt-5">
+    <div class="card-header bg-primary text-white">Customer Orders and their Products</div>
+    <div class="card-body">
+        <form method="POST">
+
+            <div class="mb-3">
+                <label class="form-label">Select Order</label>
+                <select name="order_id" class="form-select" required>
+                    {% for o in orders %}
+                        <option value="{{ o.order_id }}">Order #{{ o.order_id }} - {{ o.customer.first_name }} {{ o.customer.last_name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Select Product</label>
+                <select name="product_id" class="form-select" required>
+                    {% for p in products %}
+                        <option value="{{ p.product_id }}"> {{ p.product_title }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Quantity</label>
+                <input type="number" name="quantity" class="form-control" min="1" value="1" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Unit Price</label>
+                <input type="number" step="0.01" name="unit_price" class="form-control" placeholder="Enter unit price" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <a href="{{ url_for('input') }}" class="btn btn-secondary">Back</a>
+
+        </form>
+    </div>
+</div>
+
+{% endblock %}

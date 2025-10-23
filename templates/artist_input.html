@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Add Artist{% endblock %}
+
+{% block content %}
+<div class="card mt-5">
+    <div class="card-header bg-info text-white">Add Artist</div>
+    <div class="card-body">
+        <form method="POST" action="{{ url_for('add_artist') }}">
+            <div class="mb-3">
+                <label class="form-label">Artist Name</label>
+                <input type="text" name="artist_name" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Notes</label>
+                <textarea name="notes" class="form-control"></textarea>
+            </div>
+            <button type="submit" class="btn btn-success">Submit</button>
+            <a href="{{ url_for('artists') }}" class="btn btn-secondary">Back</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}Order Added{% endblock %} 
+{% block content %}
+<div class="alert alert-success mt-5">
+    <h4>Order Added Successfully</h4>
+    <p><strong>Order #{{ order.order_id}} for {{ order.customer.first_name }} {{order.customer.last_name }}</strong></p>
+    <a href="{{ url_for('input')}}" class="btn btn-secondary">Back to Maintenance</a>
+</div>
+{% endblock %}

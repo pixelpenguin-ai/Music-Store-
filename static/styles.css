@@ -1,101 +1,179 @@
-/* General Styles */
+/* Main styling */
 body {
     margin: 0;
+    padding: 0;
     font-family: "Open Sans", sans-serif;
-    background-color: #F4F4F4; 
-    color: #222222; 
+    background-color: #FCE48E;
+    color: #3a2c00;
+    overflow-x: hidden;
 }
 
 /* Header */
 header {
-    background-color: #4B0082;
-    color: #FFFFFF; 
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1em 2em;
+    padding: 1.2em 3em;
+    background-color: #fff8e5;
+    border-bottom: 2px solid #f3d56b;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.55);
 }
 
 .logo {
-    display: flex;
-    align-items: center;
+    font-family: "Brush Script MT", cursive;
+    font-size: 2.2em;
+    color: #3a2c00;
+    margin: 0;
 }
 
-.logo img {
-    height: 50px;
-    margin-right: 10px;
-}
-
-/* Navigation */
 nav ul {
     list-style: none;
     display: flex;
-    gap: 1.5em;
+    gap: 2em;
     margin: 0;
     padding: 0;
 }
 
 nav a {
-    color: #FFFFFF;
+    color: #3a2c00;
     text-decoration: none;
-    font-weight: 500;
+    font-weight: bold;
     transition: all 0.2s ease-in-out;
 }
 
 nav a.active,
 nav a:hover {
-    border-bottom: 2px solid #FF8C00;
+    color: #ff8c00;
 }
 
-/* Main Content */
-main {
-    padding: 2em;
-}
-
-/* Hero Section */
-.hero {
+/* Homepage section styling */
+.homepage {
+    position: relative;
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-align: center;
-    background: linear-gradient(to right, #4B0082, #8A2BE2); 
-    color: #FFFFFF; 
-    padding: 3em 1em;
-    border-radius: 12px;
-    margin-bottom: 2em;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    background-color: #FCE48E;
 }
 
-.hero h1 {
-    color: #FF8C00; 
+/* Welcome box */
+.welcome-box {
+    background-color: #fff8e5;
+    padding: 3em 4em;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
 }
 
-/* Section Headings */
-.content h3 {
-    color: #4B0082; 
+.welcome-box h2 {
+    font-size: 2.2em;
+    color: #a26e00;
+    font-family: "Brush Script MT", cursive;
 }
 
+.welcome-box p {
+    font-size: 1.1em;
+    margin-top: 0.5em;
+}
 
-.placeholder {
-    border: 2px dashed #AAAAAA;
-    padding: 1em;
-    text-align: center;
-    color: #777;
-    margin-top: 1em;
+/* Call to action button */
+.cta button {
+    display: inline-block;
+    margin-top: 2em;
+    padding: 0.8em 1.5em;
+    background-color: #ffb100;
+    color: white;
     border-radius: 8px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: background 0.3s ease;
+}
+
+.cta button:hover {
+    background-color: #ffa000;
+}
+
+/* Vinyl decorations */
+.vinyl1, .vinyl2, .vinyl3, .vinyl4 {
+    position: absolute;
+    opacity: 0.9;
+}
+
+.vinyl1 { top: 8%; left: 5%; width: 120px; transform: rotate(-15deg); }
+.vinyl2 { bottom: 10%; left: 8%; width: 140px; transform: rotate(25deg); }
+.vinyl3 { top: 10%; right: 10%; width: 130px; transform: rotate(20deg); }
+.vinyl4 { bottom: 5%; right: 12%; width: 150px; transform: rotate(-10deg); }
+
+/* Album sleeves */
+.sleeve {
+    position: absolute;
+    width: 160px;
+    opacity: 0.85;
+}
+
+.sleeve1 { top: 60%; left: -3%; transform: rotate(-12deg); }
+.sleeve2 { bottom: -5%; right: 5%; transform: rotate(10deg); }
+
+/* Hover animation */
+.vinyl-decor img:hover {
+    transform: scale(1.05) rotate(0deg);
 }
 
 /* Footer */
 footer {
-    background-color: #4B0082; 
-    color: #FFFFFF;
+    background-color: #fff8e5;
     text-align: center;
     padding: 1em;
-    margin-top: 2em;
+    color: #3a2c00;
+    border-top: 2px solid #f3d56b;
 }
 
 footer a {
-    color: #FF8C00; 
+    color: #ff8c00;
     text-decoration: none;
 }
 
 footer a:hover {
     text-decoration: underline;
+}
+
+.imprint-link {
+    font-family: "Brush Script MT", cursive;
+    font-size: 1.1em;
+    color: #a26e00;
+    text-decoration: none;
+}
+
+/* Input container */
+.input-container {
+    background-color: #FCE48E;
+    padding: 40px;
+    border-radius: 12px;
+    text-align: center;
+}
+
+h1 {
+    color: #856404;
+    margin-bottom: 20px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin: 10px 0;
+}
+
+a {
+    text-decoration: none;
+    color: #0056b3;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: #ff6f61;
 }

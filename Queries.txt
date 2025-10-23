@@ -1,0 +1,55 @@
+Query 1 (Total orders per customer):
+SELECT c.customer_id, c.first_name, c.last_name, COUNT(co.order_id) AS TotalOrders
+FROM customer c
+JOIN customer_order co ON c.customer_id = co.customer_id
+GROUP BY c.customer_id, c.first_name, c.last_name
+HAVING COUNT(co.order_id) > 0;
+
+Query 2 (Songs released after the year 2000):
+SELECT product_title, genre, price, release_date
+FROM product
+WHERE release_date > '2000-01-01'
+ORDER BY price DESC;
+
+
+Query 3 (Customers with more than 3 orders):
+SELECT c.customer_id, c.first_name, c.last_name, c.preffered_genre, COUNT(co.order_id) AS OrdersCount
+FROM customer c
+JOIN customer_order co ON c.customer_id = co.customer_id
+GROUP BY c.customer_id, c.first_name, c.last_name, c.preffered_genre
+HAVING COUNT(co.order_id) > 3;
+
+
+Query 4 (Customers who placed at least one order that is not yet filled):
+SELECT DISTINCT c.customer_id, c.first_name, c.last_name, co.order_id, co.filled
+FROM customer c
+JOIN customer_order co ON c.customer_id = co.customer_id
+WHERE co.filled = FALSE
+ORDER BY c.last_name
+LIMIT 0, 25;
+
+Query 5 (Customers who bough rock genre):
+select distinct
+    c.first_name,
+    c.last_name,
+    p.product_title,
+    p.genre
+from customer_order co
+join order_product op on co.order_id = op.order_id
+join product p on op.product_id = p.product_id
+join customer c on co.customer_id = c.customer_id
+where lower(p.genre) = 'rock';
+
+
+Query 6 (The most popular product):
+select
+    p.product_title,
+    count(co.order_id) as total_orders
+from customer_order co
+join order_product op on co.order_id = op.order_id
+join product p on op.product_id = p.product_id
+group by p.product_id
+order by total_orders desc
+limit 1;
+
+
