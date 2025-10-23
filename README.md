@@ -1,13 +1,33 @@
-**Auralia Music Store**
+🎵 Auralia Music Store
+Project Overview
+
+The Auralia Music Store is a centralised application designed to manage music-related data for both customers and artists. It allows managers and record keepers to efficiently handle product information and customer records within a single database system.
+
+Customers can place their orders via email or phone, while store administrators can easily process these orders, manage products, and update records.
+
+Core Objectives:
+- Provide a centralised platform to manage all music store data
+- Enable efficient tracking and updating of albums, artists, and songs
+- Streamline customer order management and fulfilment
+- Ensure accurate and up-to-date record keeping for store operations
 
 
-The objective of this project is to develop a centralised music store application. This application will store product information for both customers and artists, allowing for the ability to update, delete, and insert records for various entities. The database is intended for the use of managers and record keepers in a music store. Customers will have the option to place their orders via email or over the phone. It is essential for the database administrator to be able to fulfill customer requests, including the ability to order an album and locate the appropriate one.
-The core functionalities of this project include the following:
-Adding, deleting, and updating customer information.
-Adding, deleting, and updating information about albums, artists, and songs.
-Inserting new customer orders and modifying existing ones. A customer order consists of both customer information and product information.
-An ER Diagram can be shown as follows: 
+Key Features
+🧑‍💼 Customer Management:
+- Add new customers
+- Update existing customer information
+- Delete customer records
+
+💿 Product & Artist Management
+- Manage albums, artists, and songs
+- Add, update, and delete product details
+- Link songs to specific albums and artists
+
+🛒 Order Management
+- Create and update customer orders
+- Associate each order with customer and product data
+- Support for multiple items per order
 
 
-
+The ER Diagram as follows:
 ![ER diagram](https://github.com/user-attachments/assets/bc8e80de-418c-4a7d-89f5-14107b421808)
