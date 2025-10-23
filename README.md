@@ -10,3 +10,4 @@ An ER Diagram can be shown as follows:
 
 
 
+![ER diagram](https://github.com/user-attachments/assets/bc8e80de-418c-4a7d-89f5-14107b421808)
