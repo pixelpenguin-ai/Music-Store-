@@ -1,4 +1,5 @@
-🎵 Auralia Music Store
+**🎵 Auralia Music Store**
+
 Project Overview
 
 The Auralia Music Store is a centralised application designed to manage music-related data for both customers and artists. It allows managers and record keepers to efficiently handle product information and customer records within a single database system.
