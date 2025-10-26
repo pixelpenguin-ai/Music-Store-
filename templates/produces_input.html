@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block title %}Add Artist and its respective Products{% endblock %}
 {% block content %}
+<div class="artist-product-container">
 <div class="card shadow mt-5">
     <div class="card-header bg-primary text-white">Artist and their Product</div>
     <div class="card-body">
@@ -9,7 +10,7 @@
                 <label class="form-label">Select Artist</label>
                 <select name="artist_id" class="form-select">
                     {% for a in artists %}
-                        <option value="{{ a.artist_id }}">{{ a.artist_id }}</option>
+                        <option value="{{ a.artist_id }}">{{a.artist_name}}</option>
                     {% endfor %}
                 </select>
             </div>
@@ -18,7 +19,7 @@
                 <label class="form-label">Select Product</label>
                 <select name="product_id" class="form-select">
                     {% for p in products %}
-                        <option value="{{ p.product_id }}">{{ p.product_id }}</option>
+                        <option value="{{ p.product_id }}">{{ p.product_title }}</option>
                     {% endfor %}
                 </select>
             </div>
@@ -32,5 +33,6 @@
             <a href="{{ url_for('input') }}" class="btn btn-secondary">Back</a>
         </form>
     </div>
+</div>
 </div>
 {% endblock %}

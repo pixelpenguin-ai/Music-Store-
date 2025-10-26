@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block title %}Add Order{% endblock %}
 {% block content %}
-
+<div class="order-input">
 <div class="card shadow mt-5">
     <div class="card-header bg-primary text-white">Add Order</div>
     <div class="card-body">
@@ -39,10 +39,11 @@
     </div>
 
     <div class="d-grid gap-2">
-        <button type="submit" class="btn btn-success">Submit</button>
-        <a href="{{ url_for('orders') }}" class="btn btn-secondary">Back to Maintenance</a>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <a href="{{ url_for('input') }}" class="btn btn-secondary">Back</a>
     </div>
 </form>
+</div>
 
 
 {% endblock %}

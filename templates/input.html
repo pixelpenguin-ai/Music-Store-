@@ -1,35 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Input</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-</head>
+{% extends "base.html" %}
 
-<body>
-    <div class="input-container">
+{% block title %}Input - Music Store{% endblock %}
+
+{% block content %}
+<div class="input-container">
     <h2>Input</h2>
-    <ul>
-        <li><a href="{{url_for('add_artist') }}">Add Artist</a></li>
-        <li><a href="{{url_for('add_product') }}">Add Product</a></li>
-        <li><a href="{{url_for('add_order') }}">Add Order</a></li>
-        <li><a href="{{url_for('add_customer') }}">Add Customer</a></li>
-        <li><a href="{{url_for('link_artist_product') }}">Artist Product</a></li>
-        <li><a href="{{url_for('link_order_product') }}">Order Product</a></li>
-    </ul>
+    <div class="input-box">
+        <ul>
+            <li><a href="{{ url_for('add_artist') }}">Add Artist</a></li>
+            <li><a href="{{ url_for('add_product') }}">Add Product</a></li>
+            <li><a href="{{ url_for('add_order') }}">Add Order</a></li>
+            <li><a href="{{ url_for('add_customer') }}">Add Customer</a></li>
+            <li><a href="{{ url_for('link_artist_product') }}">Artist Product</a></li>
+            <li><a href="{{ url_for('link_order_product') }}">Order Product</a></li>
+        </ul>
     </div>
 
-    <div clas="vinyl-input">
-        <img src="{{ url_for('static',filename='vinyl1.png') }}" class="vinyl1">
-        <img src="{{ url_for('static',filename='vinyl2.png') }}" class="vinyl2">
-        <img src="{{ url_for('static',filename='vinyl3.png') }}" class="vinyl3">
-        <img src="{{ url_for('static',filename='vinyl4.png') }}" class="vinyl4">
+    <div class="vinyl-input">
+        <img src="{{ url_for('static', filename='vinyl1.png') }}" class="vinyl1">
+        <img src="{{ url_for('static', filename='vinyl2.png') }}" class="vinyl2">
+        <img src="{{ url_for('static', filename='vinyl3.png') }}" class="vinyl3">
+        <img src="{{ url_for('static', filename='vinyl4.png') }}" class="vinyl4">
         <img src="{{ url_for('static', filename='album_sleeve1.png') }}" class="sleeve sleeve1">
         <img src="{{ url_for('static', filename='album_sleeve2.png') }}" class="sleeve sleeve2">
-
     </div>
-</body>
-
-
-
-</html>
+</div>
+{% endblock %}
