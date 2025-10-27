@@ -2,12 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}Music Store{% endblock %}</title>
+    <title>{% block title %}Auralia{% endblock %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
     <header>
-        <h1 class="logo">Music Store</h1>
+        <h1 class="logo">Auralia</h1>
+            <img src="{{ url_for('static', filename='logo.png') }}" alt="Auralia logo" class="logo-img">
         <nav>
             <ul>
                 <li><a href="{{ url_for('index') }}" class="{% if request.endpoint == 'index' %}active{% endif %}">Home</a></li>
