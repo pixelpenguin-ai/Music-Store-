@@ -26,6 +26,12 @@ header {
     margin: 0;
 }
 
+.logo-img {
+    height: 100px; 
+    width: auto;
+    margin-right: 400px;
+}
+
 nav ul {
     list-style: none;
     display: flex;
