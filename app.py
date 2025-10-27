@@ -276,7 +276,7 @@ def link_order_product():
         db.session.commit()
 
         selected_product = product.query.get(product_id)
-        selected_order = product.query.get(order_id)
+        selected_order = customer_order.query.get(order_id)
 
         return render_template('order_product_feedback.html', product=selected_product, order=selected_order)
     return render_template('order_product.html',products=products, orders=orders)
