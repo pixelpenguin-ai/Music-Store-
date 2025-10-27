@@ -320,12 +320,15 @@ a:hover {
 }
 
 .artist-product-container .btn-secondary {
-    background-color: #f9e79f;
+    background: linear-gradient(90deg, #f2c94c, #f7d774);
+    border: none;
     color: #3a2c00;
-    border: 1px solid #e0c97f;
+    font-weight: bold;
     border-radius: 8px;
     padding: 10px 20px;
     transition: all 0.25s ease;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+    margin-left: 80px;
 }
 
 .artist-product-container .btn-secondary:hover {
@@ -849,7 +852,6 @@ a:hover {
     }
  }
 
-
   /* Order product input style handling */
 .order-product {
     background-color: #fff8e5;
@@ -937,6 +939,349 @@ a:hover {
 .order-product {
     animation: fadeInUp 0.6s ease;
 }
+
+ @keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+ }
+
+ .artist-feedback {
+    background-color: #fff8e5;
+    padding: 3em 3em;
+    border-radius: 20px;
+    width: 250px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    margin: 10px auto 0px auto;
+    margin-top: 200px;
+ }
+
+ .artist-feedback .btn-secondary {
+    background: linear-gradient(90deg, #f2c94c, #f7d774);
+    border: none;
+    color: #3a2c00;
+    font-weight: bold;
+    border-radius: 8px;
+    padding: 10px 20px;
+    transition: all 0.25s ease;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+    margin-left: 90px;
+}
+
+.artist-feedback {
+     animation: fadeInUp 0.6s ease;
+}
+
+ @keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+ }
+
+
+/*Product feedback styling*/
+.product-feedback .btn-primary:hover{
+    background: linear-gradient(90deg, #f7d774, #ffe070);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 10px rgba(247, 215, 116, 0.4);
+}
+
+  .product-feedback {
+    background-color: #fff8e5;
+    padding: 3em 3em;
+    border-radius: 20px;
+    width: 250px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    margin: 10px auto 0px auto;
+    margin-top: 200px;
+ }
+
+ .product-feedback .btn-secondary {
+    background: linear-gradient(90deg, #f2c94c, #f7d774);
+    border: none;
+    color: #3a2c00;
+    font-weight: bold;
+    border-radius: 8px;
+    padding: 10px 20px;
+    transition: all 0.25s ease;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+    margin-left: 90px;
+}
+
+.product-feedback .btn-secondary:hover{
+    background: linear-gradient(90deg, #f7d774, #ffe070);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 10px rgba(247, 215, 116, 0.4);
+}
+
+.product-feedback {
+     animation: fadeInUp 0.6s ease;
+}
+
+ @keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+ }
+
+ /*Order feedback styling*/
+
+ .order-feedback .btn-primary {
+    background: linear-gradient(90deg, #f2c94c, #f7d774);
+    border: none;
+    color: #3a2c00;
+    font-weight: bold;
+    border-radius: 8px;
+    padding: 10px 20px;
+    transition: all 0.25s ease;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+    margin-left: 90px;
+}
+
+.order-feedback .btn-primary:hover{
+    background: linear-gradient(90deg, #f7d774, #ffe070);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 10px rgba(247, 215, 116, 0.4);
+}
+
+  .order-feedback {
+    background-color: #fff8e5;
+    padding: 3em 3em;
+    border-radius: 20px;
+    width: 250px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    margin: 10px auto 0px auto;
+    margin-top: 200px;
+ }
+
+ .order-feedback .btn-secondary {
+    background: linear-gradient(90deg, #f2c94c, #f7d774);
+    border: none;
+    color: #3a2c00;
+    font-weight: bold;
+    border-radius: 8px;
+    padding: 10px 20px;
+    transition: all 0.25s ease;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+    margin-left: 90px;
+}
+
+.order-feedback .btn-secondary:hover{
+    background: linear-gradient(90deg, #f7d774, #ffe070);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 10px rgba(247, 215, 116, 0.4);
+}
+
+.order-feedback {
+     animation: fadeInUp 0.6s ease;
+}
+
+ @keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+ }
+
+ /*Customer feedback styling*/
+
+ .customer-feedback .btn-primary {
+    background: linear-gradient(90deg, #f2c94c, #f7d774);
+    border: none;
+    color: #3a2c00;
+    font-weight: bold;
+    border-radius: 8px;
+    padding: 10px 20px;
+    transition: all 0.25s ease;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+    margin-left: 90px;
+}
+
+
+.customer-feedback .btn-primary:hover{
+    background: linear-gradient(90deg, #f7d774, #ffe070);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 10px rgba(247, 215, 116, 0.4);
+}
+
+  .customer-feedback {
+    background-color: #fff8e5;
+    padding: 3em 3em;
+    border-radius: 20px;
+    width: 250px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    margin: 10px auto 0px auto;
+    margin-top: 200px;
+ }
+
+ .customer-feedback .btn-secondary {
+    background: linear-gradient(90deg, #f2c94c, #f7d774);
+    border: none;
+    color: #3a2c00;
+    font-weight: bold;
+    border-radius: 8px;
+    padding: 10px 20px;
+    transition: all 0.25s ease;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+    margin-left: 90px;
+}
+
+.customer-feedback .btn-secondary:hover{
+    background: linear-gradient(90deg, #f7d774, #ffe070);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 10px rgba(247, 215, 116, 0.4);
+}
+
+.customer-feedback {
+     animation: fadeInUp 0.6s ease;
+}
+
+ @keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+ }
+
+ /* Produces feedback page styling */
+
+ .customer-feedback .btn-primary {
+    background: linear-gradient(90deg, #f2c94c, #f7d774);
+    border: none;
+    color: #3a2c00;
+    font-weight: bold;
+    border-radius: 8px;
+    padding: 10px 20px;
+    transition: all 0.25s ease;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+    margin-left: 90px;
+}
+
+ .produces-feedback .btn-primary:hover{
+    background: linear-gradient(90deg, #f7d774, #ffe070);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 10px rgba(247, 215, 116, 0.4);
+}
+
+  .produces-feedback {
+    background-color: #fff8e5;
+    padding: 3em 3em;
+    border-radius: 20px;
+    width: 250px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    margin: 10px auto 0px auto;
+    margin-top: 200px;
+ }
+
+ .produces-feedback .btn-secondary {
+    background: linear-gradient(90deg, #f2c94c, #f7d774);
+    border: none;
+    color: #3a2c00;
+    font-weight: bold;
+    border-radius: 8px;
+    padding: 10px 20px;
+    transition: all 0.25s ease;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+    margin-left: 90px;
+}
+
+.produces-feedback .btn-secondary:hover{
+    background: linear-gradient(90deg, #f7d774, #ffe070);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 10px rgba(247, 215, 116, 0.4);
+}
+
+.produces-feedback {
+     animation: fadeInUp 0.6s ease;
+}
+
+ @keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+ }
+
+
+ /* Order Product feedback page styling */
+
+  .order-product-feedback .btn-primary {
+    background: linear-gradient(90deg, #f2c94c, #f7d774);
+    border: none;
+    color: #3a2c00;
+    font-weight: bold;
+    border-radius: 8px;
+    padding: 10px 20px;
+    transition: all 0.25s ease;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+    margin-left: 90px;
+}
+
+ .order-product-feedback .btn-primary:hover{
+    background: linear-gradient(90deg, #f7d774, #ffe070);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 10px rgba(247, 215, 116, 0.4);
+}
+
+  .order-product-feedback {
+    background-color: #fff8e5;
+    padding: 3em 3em;
+    border-radius: 20px;
+    width: 250px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    margin: 10px auto 0px auto;
+    margin-top: 200px;
+ }
+
+ .order-product-feedback .btn-secondary {
+    background: linear-gradient(90deg, #f2c94c, #f7d774);
+    border: none;
+    color: #3a2c00;
+    font-weight: bold;
+    border-radius: 8px;
+    padding: 10px 20px;
+    transition: all 0.25s ease;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+    margin-left: 90px;
+}
+
+.order-product-feedback .btn-secondary:hover{
+    background: linear-gradient(90deg, #f7d774, #ffe070);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 10px rgba(247, 215, 116, 0.4);
+}
+
+.order-product-feedback {
+     animation: fadeInUp 0.6s ease;
+}
+
  @keyframes fadeInUp {
     from {
         opacity: 0;

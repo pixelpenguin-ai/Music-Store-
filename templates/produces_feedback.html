@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Product and Artist Added{% endblock %}
+{% block content %}
+<div class="produces-feedback">
+  <div class="alert alert-success mt-5">
+    <h4>Product and Artist have been linked successfully!</h4>
+    <p><strong>Product:</strong> {{ product.product_title }}</p>
+    <p><strong>Artist:</strong> {{ artist.artist_name }}</p>
+    <a href="{{ url_for('link_artist_product') }}" class="btn btn-secondary">Back</a>
+  </div>
+</div>
+{% endblock %}

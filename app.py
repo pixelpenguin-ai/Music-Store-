@@ -219,7 +219,7 @@ def add_order():
         new_order = customer_order(
             customer_id = request.form['customer_id'],
             order_date = request.form['order_date'],
-            filled = request.form['filled'] == 'True'  # convert string to boolean
+            filled = request.form['filled'] == 'True'  
         )
         db.session.add(new_order)
         db.session.commit()
@@ -229,34 +229,57 @@ def add_order():
 #relationships input routes
 @app.route('/link_artist_product', methods=['GET', 'POST'])
 def link_artist_product():
+    
     artists = artist.query.all()
     products = product.query.all()
-    if request.method== 'POST':
+
+    if request.method == 'POST':
+        artist_id = request.form.get('artist_id')
+        product_id = request.form.get('product_id')
+        role = request.form.get('role')
+
         new_link = artist_product(
-            artist_id=request.form['artist_id'],
-            product_id=request.form['product_id'],
-            role=request.form['role']
+            artist_id=artist_id,
+            product_id=product_id,
+            role=role
         )
         db.session.add(new_link)
         db.session.commit()
-    return render_template('produces_input.html', artists = artists, products=products)
+
+        selected_artist = artist.query.get(artist_id)
+        selected_product = product.query.get(product_id)
+
+        return render_template('produces_feedback.html',artist=selected_artist,product=selected_product)
+
+    return render_template('produces_input.html', artists=artists, products=products)
+
 
 @app.route('/link_order_product', methods=['GET', 'POST'])
 def link_order_product():
     orders = customer_order.query.all()
     products = product.query.all()
+
     if request.method == 'POST':
-        new_link = order_product(
-            order_id = request.form['order_id'],
-            product_id = request.form['product_id'],
-            quantity = request.form['quantity'],
-            unit_price = request.form['unit_price']
+        order_id = request.form.get('order_id')
+        product_id = request.form.get('product_id')
+        quantity = request.form.get('quantity')
+        unit_price = request.form.get('unit_price')
+
+        new_link = order_product (
+            order_id=order_id,
+            product_id=product_id,
+            quantity=quantity,
+            unit_price=unit_price
         )
+
         db.session.add(new_link)
         db.session.commit()
-        return render_template('orders_feedback.html')
-    return render_template('order_product.html', orders = orders, products = products)
 
+        selected_product = product.query.get(product_id)
+        selected_order = product.query.get(order_id)
+
+        return render_template('order_product_feedback.html', product=selected_product, order=selected_order)
+    return render_template('order_product.html',products=products, orders=orders)
     
 
 if __name__ == '__main__':
