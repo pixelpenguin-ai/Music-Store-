@@ -165,7 +165,7 @@ def artists():
     if artist_name:
         query = query.filter(artist.artist_name.like(f"%{artist_name}%"))
 
-    artists = query.all()  # variable name matches template
+    artists = query.all()  
     return render_template('artists.html', artists=artists)
 
 
