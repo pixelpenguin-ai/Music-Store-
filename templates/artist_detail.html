@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}{{ artist.artist_name }}{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="mb-3">{{ artist.artist_name }}</h1>
+    <p><strong>Notes:</strong> {{ artist.notes or 'N/A' }}</p>
+
+    <hr>
+    <a href="{{ url_for('artists') }}" class="btn btn-secondary">Back to Artists</a>
+</div>
+{% endblock %}

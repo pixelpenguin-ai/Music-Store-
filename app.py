@@ -140,15 +140,34 @@ def orders():
 # Route for displaying all products
 @app.route('/products')
 def products():
-    products_list = product.query.all()
+    title = request.args.get('title', '').strip()
+    genre = request.args.get('genre', '').strip()
+    
+    query = product.query
+
+    if title:
+        query = query.filter(product.product_title.like(f"%{title}%"))
+
+    if genre:
+        query = query.filter(product.genre.like(f"%{genre}%"))
+
+    products_list = query.all()
     return render_template('products.html', products=products_list)
+
 
 
 # Route for displaying all artists
 @app.route('/artists')
 def artists():
-    artists_list = artist.query.all()
-    return render_template('artists.html', artists=artists_list)
+    artist_name = request.args.get('artist_name','').strip()
+
+    query = artist.query
+    if artist_name:
+        query = query.filter(artist.artist_name.like(f"%{artist_name}%"))
+
+    artists = query.all()  # variable name matches template
+    return render_template('artists.html', artists=artists)
+
 
 # route for the imprint page
 @app.route('/imprint')
@@ -282,5 +301,18 @@ def link_order_product():
     return render_template('order_product.html',products=products, orders=orders)
     
 
-if __name__ == '__main__':
+#detail pages 
+@app.route('/product/<int:id>')
+def product_detail():
+    p = product.query.get_or_404(id)
+    return render_template('product_detail.html')
+
+    
+@app.route('/artist/<int:id>')
+def artist_detail(id):
+    a = artist.query.get_or_404(id)
+    return render_template('artist_detail.html', artist=a)
+
+
+if __name__ == '__main__': 
     app.run(debug=True)

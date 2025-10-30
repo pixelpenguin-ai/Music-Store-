@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}{{ product.product_title }}{% endblock %}
+{% block content %}
+<div class="container mt-4">
+    <h1>{{ product.product_title }}</h1>
+    <p><strong>Genre:</strong> {{ product.genre or 'N/A' }}</p>
+    <p><strong>Price:</strong> ${{ product.price }}</p>
+    <p><strong>Media Type:</strong> {{ product.media or '—' }}</p>
+    <p><strong>Release Date:</strong> {{ product.release_date or '—' }}</p>
+    <p><strong>In Stock:</strong> {{ product.in_stock }}</p>
+
+    <hr>
+    <a href="{{ url_for('products') }}" class="btn btn-secondary">Back to Products</a>
+</div>
+{% endblock %}

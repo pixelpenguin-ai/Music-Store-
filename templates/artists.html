@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block title %}Artists{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="mb-4 text-center">Artist Search</h1>
+
+    <!-- Search Form -->
+    <form action="{{ url_for('artists') }}" method="get" class="mb-4">
+        <div class="row g-3">
+            <div class="col-md-10">
+                <input type="text" class="form-control" 
+                       name="artist_name" 
+                       placeholder="Search by artist name" 
+                       value="{{ request.args.get('artist_name', '') }}">
+            </div>
+            <div class="col-md-2 d-grid">
+                <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+        </div>
+    </form>
+
+    <hr>
+
+    {% if artists %}
+        {% if request.args.get('artist_name') %}
+            <h3 class="mb-3">Search Results</h3>
+        {% else %}
+            <h3 class="mb-3">All Artists</h3>
+        {% endif %}
+
+        <table class="table table-hover">
+            <thead class="table-light">
+                <tr>
+                    <th>Name</th>
+                    <th>Notes</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for artist in artists %}
+                    <tr>
+                        <td>{{ artist.artist_name }}</td>
+                        <td>{{ artist.notes or '—' }}</td>
+                        <td>
+                            <a href="{{ url_for('artist_detail', id=artist.artist_id) }}" 
+                               class="btn btn-sm btn-outline-secondary">
+                               View Details
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    {% elif request.args.get('artist_name') %}
+        <div class="alert alert-warning">
+            No artists found matching your search criteria.
+        </div>
+    {% else %}
+        <p class="text-muted">No artists available in the database yet.</p>
+    {% endif %}
+</div>
+{% endblock %}
