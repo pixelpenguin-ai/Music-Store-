@@ -1,74 +1,67 @@
 {% extends "base.html" %}
 {% block title %}Products{% endblock %}
+
 {% block content %}
-<div class="container mt-4">
-    <h1 class="mb-4 text-center">Product Search</h1>
+<div class="products">
+    <div class="card shadow mt-5">
+        <div class="card-body">
 
-    <!-- Search Form -->
-    <form action="{{ url_for('products') }}" method="get" class="mb-4">
-        <div class="row g-3">
-            <div class="col-md-5">
-                <input type="text" class="form-control" name="title" placeholder="Search by title" value="{{ request.args.get('title', '') }}">
-            </div>
-            <div class="col-md-5">
-                <input type="text" class="form-control" name="genre" placeholder="Search by genre" value="{{ request.args.get('genre', '') }}">
-            </div>
-            <div class="col-md-2 d-grid">
-                <button type="submit" class="btn btn-primary">Search</button>
-            </div>
-        </div>
-    </form>
-
-    <hr>
-
-    <!-- Search Results -->
-    {% if products %}
-        <h3 class="mb-3">Search Results</h3>
-        <table class="table table-hover">
-            <thead class="table-light">
-                <tr>
-                    <th>Title</th>
-                    <th>Genre</th>
-                    <th>Price</th>
-                    <th>Release Date</th>
-                    <th>In Stock</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for product in products %}
-                    <tr>
-                        <td>{{ product.product_title }}</td>
-                        <td>{{ product.genre or '—' }}</td>
-                        <td>${{ product.price }}</td>
-                        <td>{{ product.release_date or '—' }}</td>
-                        <td>{{ product.in_stock }}</td>
-                        <td>
-                            <a href="{{ url_for('product_detail', id=product.product_id) }}" class="btn btn-sm btn-outline-secondary">
-                                View Details
-                            </a>
-                        </td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    {% elif request.args %}
-        <div class="alert alert-warning">
-            No products found matching your search criteria.
-        </div>
-    {% else %}
-        <h3 class="mt-4">All Products</h3>
-        <ul class="list-group">
-            {% for product in products %}
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    <div>
-                        <strong>{{ product.product_title }}</strong> — {{ product.genre or 'N/A' }}
+            <form action="{{ url_for('products') }}" method="get" class="mb-4">
+                <div class="row g-3">
+                    <div class="col-md-5">
+                        <input type="text" class="form-control"
+                               name="title"
+                               placeholder="Search by title"
+                               value="{{ request.args.get('title', '') }}">
                     </div>
-                    <a href="{{ url_for('product_detail', id=product.product_id) }}" class="btn btn-sm btn-outline-primary">Details</a>
-                </li>
-            {% endfor %}
-        </ul>
-    {% endif %}
+                    <div class="col-md-5">
+                        <input type="text" class="form-control"
+                               name="genre"
+                               placeholder="Search by genre"
+                               value="{{ request.args.get('genre', '') }}">
+                    </div>
+                    <div class="col-md-2 d-grid">
+                        <button type="submit" class="btn btn-primary">Search</button>
+                    </div>
+                </div>
+            </form>
+
+            {% if products %}
+                {% if request.args.get('title') or request.args.get('genre') %}
+                    <h3 class="mb-3">Search Results</h3>
+                {% else %}
+                    <h2 class="mb-3">All Products</h2>
+                {% endif %}
+
+                <div class="row products-row">
+                    {% for product in products %}
+                        <div class="col">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <div class="product-info">
+                                        <h4 class="card-title">{{ product.product_title }}</h4>
+                                        <p class="card-text">
+                                            Genre: {{ product.genre or '—' }}<br>
+                                            Price: ${{ product.price }}<br>
+                                            Release Date: {{ product.release_date or '—' }}<br>
+                                            In Stock: {{ product.in_stock }}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+
+            {% elif request.args %}
+                <div class="alert alert-warning mt-3">
+                    No products found matching your search criteria.
+                </div>
+            {% else %}
+                <p class="text-muted mt-3">No products available in the database yet.</p>
+            {% endif %}
+
+        </div>
+    </div>
 </div>
 {% endblock %}
-

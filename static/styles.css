@@ -1298,3 +1298,157 @@ a:hover {
         transform: translateY(0);
     }
  }
+/*Artists page styling*/
+
+.artists-row {
+    display: flex;
+    flex-wrap: wrap;     
+    gap: 15px;            
+}
+
+.artists .artists-info {
+    background-color: #fff8e5;
+    padding: 3em;
+    border-radius: 20px;
+    width: 250px;        
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin: 0;
+    margin-right: 15px;          
+}
+
+.artists .artists-info:hover {
+    background: linear-gradient(90 deg, #fff8e5, #fffbea);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 10px rgba(247, 215, 116, 0.4);
+}
+
+
+.artists .form-control {
+    background-color: #fff8e5;
+  border: 1px solid #e0c97f;
+  border-radius: 10px;
+  color: #3a2c00;
+  padding: 10px;
+  font-size: 0.95em;
+  transition: all 0.2s ease-in-out;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+  margin-top: 20px;
+}
+
+.artists .btn-primary {
+    background: linear-gradient(90deg, #f2c94c, #f7d774);
+    border: none;
+    color: #3a2c00;
+    font-weight: bold;
+    border-radius: 8px;
+    padding: 10px 20px;
+    transition: all 0.25s ease;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+    margin-right: 90px;
+    margin-top: 20px;
+}
+
+.artists .btn-primary:hover {
+    background: linear-gradient(90deg, #f7d774, #ffe070);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 10px rgba(247, 215, 116, 0.4);
+}
+
+.artists .mb-3 {
+    text-align: center;
+}
+
+.artists {
+    animation: fadeInUp 0.6s ease;
+}
+ @keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+ }
+
+
+/*Products page styling*/
+.products-row {
+    display: flex;
+    flex-wrap: wrap;     
+    gap: 15px;            
+}
+
+.products .product-info {
+    background-color: #fff8e5;
+    padding: 3em;
+    border-radius: 20px;
+    width: 250px;        
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin: 0;
+    margin-right: 15px;          
+}
+
+.products .product-info:hover {
+    background: linear-gradient(90deg, #fff8e5, #fffbea);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 10px rgba(247, 215, 116, 0.4);
+}
+
+.products .form-control {
+    background-color: #fff8e5;
+    border: 1px solid #e0c97f;
+    border-radius: 10px;
+    color: #3a2c00;
+    padding: 10px;
+    font-size: 0.95em;
+    transition: all 0.2s ease-in-out;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+    margin-top: 20px;
+}
+
+.products .btn-primary {
+    background: linear-gradient(90deg, #f2c94c, #f7d774);
+    border: none;
+    color: #3a2c00;
+    font-weight: bold;
+    border-radius: 8px;
+    padding: 10px 20px;
+    transition: all 0.25s ease;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+    margin-right: 90px;
+    margin-top: 20px;
+}
+
+.products .btn-primary:hover {
+    background: linear-gradient(90deg, #f7d774, #ffe070);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 10px rgba(247, 215, 116, 0.4);
+}
+
+.products .mb-3 {
+    text-align: center;
+}
+
+.products {
+    animation: fadeInUp 0.6s ease;
+}
+ @keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+ }
