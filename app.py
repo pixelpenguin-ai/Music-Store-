@@ -1,11 +1,43 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
+from werkzeug.security import generate_password_hash, check_password_hash
+from functools import wraps
 from flask_sqlalchemy import SQLAlchemy
 from config import Config
+
 
 #Initialise Flask app
 app = Flask(__name__)
 app.config.from_object(Config)
 db = SQLAlchemy(app)
+
+
+#User model for authentication purposes
+class user_account(db.Model):
+    __tablename__ = 'user_account'
+    id = db.Column(db.Integer, primary_key=True) 
+    username = db.Column(db.String(80),  unique=True, nullable=False)
+    password_hash = db.Column(db.String(128), nullable=False)
+
+    def set_password(self, raw_password):
+        self.password_hash = generate_password_hash(raw_password)
+
+    def check_password(self, raw_password):
+        return check_password_hash(self.password_hash, raw_password)
+    
+    
+    def require_auth_for_post(f):
+        @wraps(f)
+        def decorated(*args, **kwargs):
+            if request.method == 'POST':
+                username = request.form.get('username', '').strip()
+                password = request.form.get('password','').strip()
+                if not authenticate(username,password):
+                    flash('Unauthorised access: Invalid username or password', 'error')
+                    return f(*args, auth_failed = True, **kwargs)
+                return f(*args, **kwargs)
+            return decorated 
+
+
 
 #Model for the 'customer' table
 class customer(db.Model):
@@ -121,6 +153,15 @@ class order_product(db.Model):
     order = db.relationship('customer_order', back_populates = 'products')
     product = db.relationship('product', back_populates = 'orders')
 
+#Helper function authenticate
+def authenticate(username, password):
+    if not username or not password:
+        return False
+    u = user_account.query.filter_by(username=username).first()
+    if u and u.check_password(password):
+        return True
+    return False
+
 
 @app.route('/')
 def index():
@@ -185,6 +226,13 @@ def input():
 @app.route('/add_product', methods= ['GET', 'POST'])
 def add_product():
     if request.method == 'POST':
+        username = request.form.get('username','').strip()
+        password = request.form.get('password','').strip()
+
+        if not authenticate(username, password):
+            flash('Unauthorised access: Invalid username and password', 'error')
+            return render_template('product_input.html', product=request.form),401
+        
         new_product = product (
             product_title = request.form['product_title'],
             price = request.form['price'],
@@ -203,6 +251,13 @@ def add_product():
 @app.route('/add_artist', methods=['GET', 'POST'])
 def add_artist():    
     if request.method == 'POST':
+        username = request.form.get('username','').strip()
+        password = request.form.get('password','').strip()
+
+        if not authenticate(username, password):
+            flash('Unauthorised access: Invalid username and password', 'error')
+            return render_template('product_input.html', product=request.form),401
+
         name = request.form['artist_name']
         notes = request.form['notes']
         new_artist = artist(artist_name=name, notes=notes)
@@ -215,6 +270,12 @@ def add_artist():
 @app.route('/add_customer', methods=['GET', 'POST'])
 def add_customer():
     if request.method == 'POST':
+        username = request.form.get('username','').strip()
+        password = request.form.get('password','').strip()
+
+        if not authenticate(username, password):
+            flash('Unauthorised access: Invalid username and password', 'error')
+            return render_template('product_input.html', product=request.form),401
         new_customer = customer(
             first_name=request.form['first_name'],
             last_name=request.form['last_name'],
@@ -235,6 +296,12 @@ def add_customer():
 def add_order():
     customers = customer.query.all()
     if request.method == 'POST':
+        username = request.form.get('username','').strip()
+        password = request.form.get('password','').strip()
+
+        if not authenticate(username, password):
+            flash('Unauthorised access: Invalid username and password', 'error')
+            return render_template('product_input.html', product=request.form),401
         new_order = customer_order(
             customer_id = request.form['customer_id'],
             order_date = request.form['order_date'],
@@ -253,6 +320,13 @@ def link_artist_product():
     products = product.query.all()
 
     if request.method == 'POST':
+        username = request.form.get('username','').strip()
+        password = request.form.get('password','').strip()
+
+        if not authenticate(username, password):
+            flash('Unauthorised access: Invalid username and password', 'error')
+            return render_template('product_input.html', product=request.form),401
+        
         artist_id = request.form.get('artist_id')
         product_id = request.form.get('product_id')
         role = request.form.get('role')
@@ -279,6 +353,13 @@ def link_order_product():
     products = product.query.all()
 
     if request.method == 'POST':
+        username = request.form.get('username','').strip()
+        password = request.form.get('password','').strip()
+
+        if not authenticate(username, password):
+            flash('Unauthorised access: Invalid username and password', 'error')
+            return render_template('product_input.html', product=request.form),401
+        
         order_id = request.form.get('order_id')
         product_id = request.form.get('product_id')
         quantity = request.form.get('quantity')
@@ -312,6 +393,7 @@ def product_detail():
 def artist_detail(id):
     a = artist.query.get_or_404(id)
     return render_template('artist_detail.html', artist=a)
+
 
 
 if __name__ == '__main__': 
