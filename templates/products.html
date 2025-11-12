@@ -5,7 +5,6 @@
 <div class="products">
     <div class="card shadow mt-5">
         <div class="card-body">
-
             <form action="{{ url_for('products') }}" method="get" class="mb-4">
                 <div class="row g-3">
                     <div class="col-md-5">
@@ -26,6 +25,7 @@
                 </div>
             </form>
 
+            <!-- 🛍️ Product Listing -->
             {% if products %}
                 {% if request.args.get('title') or request.args.get('genre') %}
                     <h3 class="mb-3">Search Results</h3>
@@ -35,17 +35,24 @@
 
                 <div class="row products-row">
                     {% for product in products %}
-                        <div class="col">
+                        <div class="col-md-4 mb-4">
                             <div class="card h-100">
                                 <div class="card-body">
                                     <div class="product-info">
                                         <h4 class="card-title">{{ product.product_title }}</h4>
                                         <p class="card-text">
                                             Genre: {{ product.genre or '—' }}<br>
-                                            Price: ${{ product.price }}<br>
+                                            Price: € {{ "%.2f"|format(product.price) }}<br>
                                             Release Date: {{ product.release_date or '—' }}<br>
                                             In Stock: {{ product.in_stock }}
                                         </p>
+                                <div class="card-footer text-center">
+                                    <form action="{{ url_for('add_to_cart', product_id=product.product_id) }}" method="POST" class="d-inline">
+                                        <button type="submit" class="btn btn-success">
+                                            🛒 Add to Cart
+                                        </button>
+                                    </form>
+                                </div>
                                     </div>
                                 </div>
                             </div>

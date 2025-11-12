@@ -8,31 +8,23 @@
 <body>
     <header>
         <h1 class="logo">Auralia</h1>
-            <img src="{{ url_for('static', filename='logo.png') }}" alt="Auralia logo" class="logo-img">
+        <img src="{{ url_for('static', filename='logo.png') }}" alt="Auralia logo" class="logo-img">
+
         <nav>
             <ul>
                 <li><a href="{{ url_for('index') }}" class="{% if request.endpoint == 'index' %}active{% endif %}">Home</a></li>
-                <li><a href="{{ url_for('customers') }}" class="{% if request.endpoint == 'customers' %}active{% endif %}">Customers</a></li>
                 <li><a href="{{ url_for('products') }}" class="{% if request.endpoint == 'products' %}active{% endif %}">Products</a></li>
                 <li><a href="{{ url_for('artists') }}" class="{% if request.endpoint == 'artists' %}active{% endif %}">Artists</a></li>
-                <li><a href="{{ url_for('imprint') }}" class="{% if request.endpoint == 'imprint' %}active{% endif %}">Imprint</a></li>
+
+                {% if session.get('customer_id') %}
+                    <li><a href="{{ url_for('cart') }}" class="{% if request.endpoint == 'cart' %}active{% endif %}">View Cart 🛒</a></li>
+                    <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                {% else %}
+                    <li><a href="{{ url_for('login') }}" class="{% if request.endpoint == 'login' %}active{% endif %}">Login</a></li>
+                {% endif %}
             </ul>
         </nav>
     </header>
-
-    {% with messages = get_flashed_messages(with_categories=true) %}
-    
-  {% if messages %}
-    <ul class="flashes">
-      {% for category, message in messages %}
-        <li class="{{ category }}">{{ message }}</li>
-      {% endfor %}
-    </ul>
-  {% endif %}
-
-{% endwith %}
-
-
 
     <div class="container">
         {% block content %}{% endblock %}

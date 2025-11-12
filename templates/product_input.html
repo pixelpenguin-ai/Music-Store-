@@ -8,15 +8,6 @@
     <div class="card-body">
         <form method="POST" action="{{ url_for('add_product') }}">
             <div class="mb-3">
-                <label for="username">Username</label>
-                <input type="text" id="username" name="username" required>
-            </div>
-            <div class="mb-3">
-                <label for="password">Password</label>
-                <input type="password" id="'password" name="password" required>
-            </div>
-
-            <div class="mb-3">
                 <label class="form-label">Product Title</label>
                 <input type="text" name="product_title" class="form-control" required>
             </div>
@@ -44,6 +35,16 @@
             <div class="mb-3">
                 <label class="form-label">In Stock</label>
                 <input type="number" name="in_stock" class="form-control" min="0">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Username</label>
+                <input class="form-control" type="text" name="username" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Password</label>
+                <input class="form-control" type="password" name="password" required>
             </div>
 
             <button type="submit" class="btn btn-primary">Submit</button>

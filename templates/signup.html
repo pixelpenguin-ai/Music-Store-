@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block title %}Signup | Auralia{% endblock %}
+
+{% block content %}
+<div class="signup">
+    <div class="card mt-5">
+        <div class="card-header">Sign Up</div>
+        <div class="card-body">
+            <form method="POST" action="{{ url_for('signup') }}">
+                
+                <div class="mb-3">
+                    <label class="form-label">First Name</label>
+                    <input type="text" name="first_name" class="form-control" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Last Name</label>
+                    <input type="text" name="last_name" class="form-control" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Phone Number</label>
+                    <input type="number" name="phone_number" class="form-control" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Email</label>
+                    <input type="email" name="email" class="form-control" placeholder="user@email.com" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Password</label>
+                    <input type="password" name="password" class="form-control" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Street</label>
+                    <input type="text" name="street" class="form-control" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">City</label><br>
+                    <input type="text" name="city" class="form-control" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">ZIP Code</label>
+                    <input type="text" name="zip" class="form-control" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Preferred Genre</label>
+                    <input type="text" name="preffered_genre" class="form-control" required>
+                </div>
+
+                <div class="text-center">
+                    <button type="submit" class="btn btn-success">Sign Up</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="vinyl-decor">
+            <img src="{{ url_for('static', filename='vinyl1.png') }}" class="vinyl1">
+            <img src="{{ url_for('static', filename='vinyl2.png') }}" class="vinyl2">
+            <img src="{{ url_for('static', filename='vinyl3.png') }}" class="vinyl3">
+            <img src="{{ url_for('static', filename='vinyl4.png') }}" class="vinyl4">
+            <img src="{{ url_for('static', filename='album_sleeve1.png') }}" class="sleeve sleeve1">
+            <img src="{{ url_for('static', filename='album_sleeve2.png') }}" class="sleeve sleeve2">
+    </div>
+</div>
+{% endblock %}

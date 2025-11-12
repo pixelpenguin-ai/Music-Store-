@@ -1,30 +1,29 @@
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, request, redirect, url_for, flash, session
 from werkzeug.security import generate_password_hash, check_password_hash
 from functools import wraps
 from flask_sqlalchemy import SQLAlchemy
 from config import Config
-
 
 #Initialise Flask app
 app = Flask(__name__)
 app.config.from_object(Config)
 db = SQLAlchemy(app)
 
+#secret key for login route 
+app.secret_key = 'EE140D43743D19CFB202DE69560243D287C3B1CA'
 
 #User model for authentication purposes
 class user_account(db.Model):
     __tablename__ = 'user_account'
     id = db.Column(db.Integer, primary_key=True) 
     username = db.Column(db.String(80),  unique=True, nullable=False)
-    password_hash = db.Column(db.String(128), nullable=False)
+    password_hash = db.Column(db.String(128), nullable=False)   
 
     def set_password(self, raw_password):
         self.password_hash = generate_password_hash(raw_password)
 
     def check_password(self, raw_password):
-        return check_password_hash(self.password_hash, raw_password)
-    
-    
+        return check_password_hash(self.password_hash, raw_password) 
     def require_auth_for_post(f):
         @wraps(f)
         def decorated(*args, **kwargs):
@@ -37,8 +36,6 @@ class user_account(db.Model):
                 return f(*args, **kwargs)
             return decorated 
 
-
-
 #Model for the 'customer' table
 class customer(db.Model):
     __tablename__ = 'customer'
@@ -46,6 +43,7 @@ class customer(db.Model):
     first_name = db.Column(db.String(100), nullable = False)
     last_name = db.Column(db.String(100), nullable = False)
     email = db.Column(db.String(100), unique = True)
+    password_hash = db.Column(db.String(128))
 
     phone_number = db.Column(db.String(20))
     street = db.Column(db.String(200))
@@ -167,11 +165,76 @@ def authenticate(username, password):
 def index():
     return render_template('index.html')
 
-# Route for displaying all customers
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        email = request.form['email']
+        password = request.form['password']
+
+        customer_obj = customer.query.filter_by(email=email).first()
+        if customer_obj and check_password_hash(customer_obj.password_hash, password):
+            session['customer_id'] = customer_obj.customer_id
+            flash("Login successful!", "success")
+            return redirect(url_for('products'))
+        else:
+            flash("Invalid email or password.", "danger")
+            return redirect(url_for('login'))
+
+    return render_template('login.html')
+
+@app.route('/logout')
+def logout():
+    session.pop('customer_id',None)
+    flash('You have been logged out.', 'info')
+    return redirect(url_for('login'))
+
+@app.route('/signup', methods=['GET', 'POST'])
+def signup():
+    if request.method == 'POST':
+        name = request.form['first_name']
+        surname = request.form['last_name']
+        phone = request.form['phone_number']
+        street = request.form['street']
+        city = request.form['city']
+        zip = request.form['zip']
+        genre = request.form['preffered_genre']
+        email = request.form['email']
+        password = request.form['password']
+
+        #check whether the email exists
+        existing_user = customer.query.filter_by(email=email).first()
+        if existing_user:
+            flash("Email already registered. Please log in.")
+            return redirect(url_for('login'))
+        
+        #hash password before saving
+        hashed_password = generate_password_hash(password)
+
+        #create and save the user inside the database
+        new_user = customer(
+            first_name=name,
+            last_name=surname,
+            email=email,
+            phone_number=phone,
+            street=street,
+            city=city,
+            zip=zip,
+            preffered_genre=genre,
+            password_hash=hashed_password
+        )
+        db.session.add(new_user)
+        db.session.commit()
+
+        flash("Account created successfully!")
+        return redirect(url_for('login'))
+    return render_template('signup.html')
+
+
+#Route to login when pressed the customers button is pressed 
 @app.route('/customers')
 def customers():
-    customers = customer.query.all()
-    return render_template('customers.html', customers=customers)
+    return redirect(url_for('login'))
+
 
 @app.route('/orders')
 def orders():
@@ -266,7 +329,6 @@ def add_artist():
         return render_template('artist_feedback.html', artist=new_artist)
     return render_template('artist_input.html')
 
-
 @app.route('/add_customer', methods=['GET', 'POST'])
 def add_customer():
     if request.method == 'POST':
@@ -275,7 +337,11 @@ def add_customer():
 
         if not authenticate(username, password):
             flash('Unauthorised access: Invalid username and password', 'error')
-            return render_template('product_input.html', product=request.form),401
+            return render_template('customer_input.html'), 401
+
+        plain_password = request.form['password_customer'] 
+        hashed_password = generate_password_hash(plain_password)
+
         new_customer = customer(
             first_name=request.form['first_name'],
             last_name=request.form['last_name'],
@@ -284,10 +350,12 @@ def add_customer():
             street=request.form['street'],
             city=request.form['city'],
             zip=request.form['zip'],
-            preffered_genre=request.form['preffered_genre']
+            preffered_genre=request.form['preffered_genre'],
+            password_hash=hashed_password
         )
         db.session.add(new_customer)
         db.session.commit()
+        flash("Customer added successfully", "success")
         return render_template('customer_feedback.html', customer=new_customer)
     return render_template('customer_input.html')
 
@@ -394,6 +462,103 @@ def artist_detail(id):
     a = artist.query.get_or_404(id)
     return render_template('artist_detail.html', artist=a)
 
+
+def login_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if 'customer_id' not in session:
+            flash('Please log in to access this page.', 'warning')
+            return redirect(url_for('login'))
+            return f(*args, **kwargs)
+        return decorated_function
+
+# Add item to cart
+@app.route('/add_to_cart/<int:product_id>', methods=['POST'])
+def add_to_cart(product_id):
+    if 'customer_id' not in session:
+        flash('Please log in to add items to your cart.', 'warning')
+        return redirect(url_for('login'))
+
+    prod = product.query.get_or_404(product_id)
+
+    # Check if enough stock is available
+    cart = session.get('cart', {})
+    current_quantity = cart.get(str(product_id), 0)
+    if prod.in_stock < current_quantity + 1:
+        flash(f"Not enough stock for {prod.product_title}.", 'danger')
+        return redirect(url_for('products'))
+
+    # Initialize cart if not existing
+    cart[str(product_id)] = current_quantity + 1
+    session['cart'] = cart
+    session.modified = True
+
+    flash(f"{prod.product_title} added to your cart!", "success")
+    return redirect(url_for('products'))
+
+
+# View cart
+@app.route('/cart')
+def cart():
+    if 'customer_id' not in session:
+        flash('Please log in to view your cart.', 'warning')
+        return redirect(url_for('login'))
+
+    cart = session.get('cart', {})
+    cart_items = []
+    total = 0
+
+    for product_id, quantity in cart.items():
+        prod = product.query.get(int(product_id))
+        if prod:
+            subtotal = float(prod.price) * quantity
+            total += subtotal
+            cart_items.append({
+                'product': prod,
+                'qty': quantity,
+                'subtotal': subtotal
+            })
+
+    return render_template('cart.html', cart_items=cart_items, total=total)
+
+
+# Checkout route
+@app.route('/checkout', methods=['POST'])
+def checkout():
+    if 'customer_id' not in session:
+        flash('Please log in to checkout', 'warning')
+        return redirect(url_for('login'))
+
+    cart = session.get('cart', {})
+    if not cart:
+        flash('Your cart is empty', 'warning')
+        return redirect(url_for('products'))
+
+    insufficient_stock = []
+
+    # Check stock before decreasing
+    for product_id, quantity in cart.items():
+        prod = product.query.get(int(product_id))
+        if prod.in_stock < quantity:
+            insufficient_stock.append(prod.product_title)
+
+    if insufficient_stock:
+        flash(f"Not enough stock for: {', '.join(insufficient_stock)}", 'danger')
+        return redirect(url_for('cart'))
+
+    # Decrease stock in database
+    for product_id, quantity in cart.items():
+        prod = product.query.get(int(product_id))
+        prod.in_stock -= quantity
+
+    db.session.commit()
+
+    # Clear the cart
+    session['cart'] = {}
+    session.modified = True
+
+    flash('Purchase completed! Thank you for your order.', 'success')
+    return redirect(url_for('products'))
 
 
 if __name__ == '__main__': 

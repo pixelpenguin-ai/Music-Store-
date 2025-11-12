@@ -16,16 +16,6 @@
             </div>
 
             <div class="mb-3">
-                <label for="username">Username</label>
-                <input type="text" id="username" name="username" required>
-            </div>
-            
-            <div class="mb-3">
-                <label for="password">Password</label>
-                <input type="password" id="'password" name="password" required>
-            </div>
-
-            <div class="mb-3">
                 <label class="form-label">Select Product</label>
                 <select name="product_id" class="form-select">
                     {% for p in products %}
@@ -37,6 +27,15 @@
             <div class="mb-3">
                 <label class="form-label">Select Role</label>
                 <input type="text" name="role" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Username</label>
+                <input class="form-control" type="text" name="username" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Password</label>
+                <input class="form-control" type="password" name="password" required>
             </div>
 
             <button type="submit" class="btn btn-primary">Submit</button>
