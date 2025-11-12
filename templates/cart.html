@@ -28,6 +28,12 @@
                 <td>{{ item.qty }}</td>
                 <td>€{{ "%.2f"|format(item.product.price) }}</td>
                 <td>€{{ "%.2f"|format(item.subtotal) }}</td>
+                <td>
+                <form action="{{ url_for('remove_from_cart', product_id=item.product.product_id) }}" method="post" style="display:inline;">
+                  <button type="submit" class="btn btn-danger btn-sm">
+                    <i class="bi bi-trash"></i> Remove</button>
+                </form>
+                </td>
             </tr>
             {% endfor %}
         </tbody>

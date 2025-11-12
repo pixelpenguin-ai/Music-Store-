@@ -1645,7 +1645,7 @@ a:hover {
     background-color: #fff8e5;
     padding: 3em 3em;
     border-radius: 20px;
-    width: 350px;
+    width: 400px;
     box-shadow: 0 8px 25px rgba(0,0,0,0.15);
     margin: 10px auto 0px auto;
     margin-top: 170px;
@@ -1664,16 +1664,6 @@ a:hover {
     margin-bottom: 20px;
  }
 
-.cart-container .table-light .th {
-    border-collapse: separate;
-    border-spacing: 10px 5px;
-}
-
-.cart-container table {
-  border-collapse: separate;
-  border-spacing: 4px 4px;
-}
-
 .cart-container th,
 .cart-container td {
   padding-left: 6px !important; /* force left alignment */
@@ -1690,7 +1680,7 @@ a:hover {
     padding: 10px 20px;
     transition: all 0.25s ease;
     box-shadow: 0 3px 6px rgba(0,0,0,0.1);
-    margin-left: 120px;
+    margin-left: 150px;
     margin-top: 20px;
  }
 
@@ -1700,6 +1690,24 @@ a:hover {
     box-shadow: 0 5px 10px rgba(247, 215, 116, 0.4);
  }
 
+
+.cart-container .btn-danger {
+    background: linear-gradient(90deg, #f2c94c, #f7d774);
+    border: none;
+    color: #3a2c00;
+    font-weight: bold;
+    border-radius: 8px;
+    padding: 10px 20px;
+    transition: all 0.25s ease;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+    margin-top: 20px;
+}
+
+.cart-container .btn-danger:hover {
+    background: linear-gradient(90deg, #f7d774, #ffe070);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 10px rgba(247, 215, 116, 0.4);
+}
 
  .cart-container {
     animation: fadeInUp 0.6s ease;

@@ -560,6 +560,20 @@ def checkout():
     flash('Purchase completed! Thank you for your order.', 'success')
     return redirect(url_for('products'))
 
+@app.route('/remove_from_cart/<int:product_id>', methods=['POST'])
+def remove_from_cart(product_id):
+    cart = session.get('cart', {})
+    product_id_str = str(product_id)  # keys in session are strings
+
+    if product_id_str in cart:
+        cart.pop(product_id_str)  # remove the item
+        session['cart'] = cart
+        session.modified = True
+        flash('Item removed from cart.', 'success')
+    else:
+        flash('Item not found in cart.', 'warning')
+
+    return redirect(url_for('cart'))
 
 if __name__ == '__main__': 
     app.run(debug=True)
