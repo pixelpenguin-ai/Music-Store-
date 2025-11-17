@@ -10,6 +10,7 @@
         <div class="row g-3">
           <div class="col-md-10">
             <input type="text" class="form-control"
+                   id="search-name"
                    name="artist_name"
                    placeholder="Search by artist name"
                    value="{{ request.args.get('artist_name', '') }}">
@@ -53,4 +54,22 @@
     </div>
   </div>
 </div>
+
+
+<script>
+  $(function() {
+    //static test data
+    const nameTags = [
+      "The Beatles", "Taylor Swift", "Led Zeppelin", "Pink Floyd",
+      "Adele", "Queen", "Ed Sheeran", "Beyoncé", "Coldplay", "Drake"
+    ];
+
+    //autocomplete 
+    $("#search-name").autocomplete({
+      source: nameTags,
+      minLength: 1
+    });
+  })
+</script>
+
 {% endblock %}

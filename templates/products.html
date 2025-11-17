@@ -9,12 +9,14 @@
                 <div class="row g-3">
                     <div class="col-md-5">
                         <input type="text" class="form-control"
+                               id="search-title" 
                                name="title"
                                placeholder="Search by title"
                                value="{{ request.args.get('title', '') }}">
                     </div>
                     <div class="col-md-5">
                         <input type="text" class="form-control"
+                               id="search-genre"  
                                name="genre"
                                placeholder="Search by genre"
                                value="{{ request.args.get('genre', '') }}">
@@ -25,7 +27,7 @@
                 </div>
             </form>
 
-            <!-- 🛍️ Product Listing -->
+            <!--Product Listing -->
             {% if products %}
                 {% if request.args.get('title') or request.args.get('genre') %}
                     <h3 class="mb-3">Search Results</h3>
@@ -71,4 +73,34 @@
         </div>
     </div>
 </div>
+
+<script>
+$(function() {
+
+    // static test data
+    const titleTags = [
+        "Abbey Road", "Shake it Off", "Stairway to Heaven", "The Dark Side of the Moon", "25",
+        "Bohemian Rapsody", "Shape of You", "Lemonade", "A Head Full of Dreams", "One Dance",
+        "A Night at the Opera", "Thriller", "Back in Black", "The Wall", "Views", "Spring"
+    ];
+
+    const genreTags = [
+        "Rock", "Pop", "Hip-Hop","Progressive Rock", "R&B", "Alternative Rock"
+    ];
+
+    $("#search-title").autocomplete({
+        source: titleTags,
+        minLength: 1
+    });
+
+    $("#search-genre").autocomplete({
+        source: genreTags,
+        minLength: 1
+    });
+
+});
+</script>
+
+
+
 {% endblock %}

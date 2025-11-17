@@ -1645,7 +1645,7 @@ a:hover {
     background-color: #fff8e5;
     padding: 3em 3em;
     border-radius: 20px;
-    width: 400px;
+    width: 500px;
     box-shadow: 0 8px 25px rgba(0,0,0,0.15);
     margin: 10px auto 0px auto;
     margin-top: 170px;
@@ -1680,7 +1680,7 @@ a:hover {
     padding: 10px 20px;
     transition: all 0.25s ease;
     box-shadow: 0 3px 6px rgba(0,0,0,0.1);
-    margin-left: 150px;
+    margin-left: 200px;
     margin-top: 20px;
  }
 
