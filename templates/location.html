@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}Your Location |    Auralia{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+
+    <div class="card shadow">
+        <div class="card-header">
+            <h4 class="m-0">Your Location </h4>
+        </div>
+
+        <div class="card-body">
+            <p class="mb-3">
+                <strong>Your detected IP:</strong> {{ ip }}
+            </p>
+            <div id="map"
+                 data-lat="{{ lat }}"
+                 data-lon="{{ lon }}"
+                 style="height: 450px; width: 100%; border-radius: 8px;">
+            </div>
+        </div>
+    </div>
+</div>
+
+<link rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
+
+<script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+
+<script>
+    const mapDiv = document.getElementById("map");
+    const lat = parseFloat(mapDiv.dataset.lat);
+    const lon = parseFloat(mapDiv.dataset.lon);
+
+    const map = L.map('map').setView([lat, lon], 12);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+    }).addTo(map);
+
+    L.marker([lat, lon]).addTo(map)
+        .bindPopup("Your IP: {{ ip }}")
+        .openPopup();
+</script>
+
+{% endblock %}

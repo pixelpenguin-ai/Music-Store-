@@ -18,6 +18,7 @@
                 <li><a href="{{ url_for('artists') }}">Artists</a></li>
                 <li><a href="{{ url_for('customers') }}">Customers</a></li>
                 <li><a href="{{ url_for('input') }}">Input</a></li>
+                <li><a href="{{ url_for('location') }}">Location 🌍</a></li>
             </ul>
         </nav>
     </header>
@@ -39,10 +40,8 @@
             <img src="{{ url_for('static', filename='album_sleeve2.png') }}" class="sleeve sleeve2">
          </div>
     </main>
-
     <footer>
         <p>&copy; 2025 Auralia &nbsp; |&nbsp; <a href="{{ url_for('imprint') }}" class="imprint-link">Imprint</a></p>
     </footer>
-
 </body>
 </html>
