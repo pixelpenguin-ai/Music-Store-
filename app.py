@@ -12,6 +12,15 @@ db = SQLAlchemy(app)
 #secret key for login route 
 app.secret_key = 'EE140D43743D19CFB202DE69560243D287C3B1CA'
 
+
+#Helper function to get client IP
+def get_client_ip(req):
+    if req.headers.get("X-Frwarded-For"):
+        ip = req.headers.get("X-Forward-For").split(",")[0]
+    else:
+        ip = req.remote_addr
+    return ip
+
 #User model for authentication purposes
 class user_account(db.Model):
     __tablename__ = 'user_account'
@@ -163,7 +172,7 @@ def authenticate(username, password):
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template("index.html")
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -574,6 +583,26 @@ def remove_from_cart(product_id):
         flash('Item not found in cart.', 'warning')
 
     return redirect(url_for('cart'))
+
+#adding a location route 
+@app.route('/location')
+def location():
+    #get the client IP
+    ip = request.headers.get("X-Forward-For",request.remote_addr)
+    if ip == "127.0.0.1":
+        ip = "8.8.8.8"
+    
+    #call the ipInfo API
+    try:
+        response = request.get(f"https:/ipinfo.io/{ip}/json")
+        data = response.json()
+
+        loc = data.get("loc","0,0")
+        lat, lon = map(float, loc.split(","))
+    except Exception:
+        lat, lon = (0,0)
+    
+    return render_template("location.html",ip=ip, lat=lat, lon=lon)
 
 if __name__ == '__main__': 
     app.run(debug=True)
